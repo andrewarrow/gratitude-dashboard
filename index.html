@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f6fc">
+  <meta name="description" content="A little perspective on the good things already here. An interactive gratitude dashboard with fresh, positive sample data on every refresh.">
+  <title>Gratitude Dashboard</title>
+  <link rel="icon" href="assets/leaf.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="i-overview" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 14h3l2-5 2 8 2-4h2"/></symbol>
+      <symbol id="i-stats" viewBox="0 0 24 24"><path d="M4 20V10m5 10V4m6 16v-7m5 7V7"/></symbol>
+      <symbol id="i-log" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="17" rx="2"/><path d="M8 2v4m8-4v4M4 9h16m-12 5 2 2 5-4"/></symbol>
+      <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 14 6-6 5 4 7-8m-5 0h5v5M5 20v-3m6 3v-7m6 7v-5"/></symbol>
+      <symbol id="i-wins" viewBox="0 0 24 24"><path d="M8 3h8v6a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4m-4 2v6m-4 2h8"/></symbol>
+      <symbol id="i-journal" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H4V4Zm9 3a3 3 0 0 1 3-3h5v15h-4a4 4 0 0 0-4 2M7 8h3m-3 4h3m6-4h2m-2 4h2"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5m-4-4a8 8 0 0 1 13-3l2 3M4 16l2 3a8 8 0 0 0 13-3"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18"/></symbol>
+      <symbol id="i-water" viewBox="0 0 24 24"><path d="M12 2C9 7 5 11 5 15a7 7 0 0 0 14 0c0-4-4-8-7-13Z"/><path d="M8 15a4 4 0 0 0 3 4"/></symbol>
+      <symbol id="i-shower" viewBox="0 0 24 24"><path d="M7 8a5 5 0 0 1 10 0M5 9h14M12 3V1M6 13v1m6-1v1m6-1v1M6 18v2m6-2v2m6-2v2"/></symbol>
+      <symbol id="i-food" viewBox="0 0 24 24"><path d="M3 12h18a9 9 0 0 1-18 0Zm3 9h12M7 9c-4-5 3-6 5-1m0 2c-1-6 6-8 7-7 0 4-2 6-7 7Z"/></symbol>
+      <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 4v17m18-11v11M3 16h18M3 10h15a3 3 0 0 1 3 3v3M6 7h4v3H6z"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-8l1-7Z"/></symbol>
+      <symbol id="i-lungs" viewBox="0 0 24 24"><path d="M12 3v9m0-4-3 3m3-3 3 3M9 7C5 7 2 14 3 19c3 2 6 0 6-3V7Zm6 0c4 0 7 7 6 12-3 2-6 0-6-3V7Z"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+      <symbol id="i-people" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M6 21v-3a6 6 0 0 1 12 0v3H6ZM5 5a3 3 0 0 0-1 6m15-6a3 3 0 0 1 1 6M2 20v-3a4 4 0 0 1 3-4m17 7v-3a4 4 0 0 0-3-4"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 1v2m0 18v2M1 12h2m18 0h2M4.2 4.2l1.4 1.4m12.8 12.8 1.4 1.4M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+      <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 17V5l12-3v12M9 9l12-3"/><ellipse cx="5.5" cy="18" rx="3.5" ry="3"/><ellipse cx="17.5" cy="15" rx="3.5" ry="3"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-pie" viewBox="0 0 24 24"><path d="M11 3a9 9 0 1 0 10 10H11V3Zm3-1v8h8a9 9 0 0 0-8-8Z"/></symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m15 2 2.5 7.5L23 12l-5.5 2.5L15 22l-2.5-7.5L7 12l5.5-2.5L15 2ZM5 2l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3Z"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    </defs>
+  </svg>
+
+  <aside class="sidebar" aria-label="Main navigation">
+    <a class="brand" href="#overview"><img src="assets/leaf.svg" width="36" height="42" alt=""><span>Gratitude<br> Dashboard</span></a>
+    <nav class="navigation">
+      <a class="nav-link active" href="#overview" aria-current="page"><svg class="icon"><use href="#i-overview"/></svg><span>Overview</span></a>
+      <a class="nav-link" href="#needs"><svg class="icon"><use href="#i-people"/></svg><span>My Gratitude Stats</span></a>
+      <a class="nav-link" href="#activity"><svg class="icon"><use href="#i-log"/></svg><span>Daily Log</span></a>
+      <a class="nav-link" href="#trends"><svg class="icon"><use href="#i-trend"/></svg><span>Trends &amp; Insights</span></a>
+      <a class="nav-link" href="#wins"><svg class="icon"><use href="#i-wins"/></svg><span>Uncounted Wins</span></a>
+      <button class="nav-link" id="open-journal" type="button"><svg class="icon"><use href="#i-journal"/></svg><span>Journal</span><span class="journal-count" id="journal-count" hidden></span></button>
+    </nav>
+    <div class="sidebar-note"><img src="assets/leaf.svg" width="42" height="48" alt=""><p>A calmer perspective,<br>a little more gratitude.</p><span>Same life. More gratitude.</span></div>
+  </aside>
+
+  <main id="main" class="main" tabindex="-1">
+    <header class="page-header" id="overview">
+      <div><h1>Gratitude Dashboard</h1><p class="page-subtitle">A little perspective on the good things already here.</p></div>
+      <div class="header-action"><button class="button button-primary" id="refresh" type="button"><svg class="icon"><use href="#i-refresh"/></svg>Refresh Perspective</button><span class="updated" id="updated">Your fresh perspective is on its way</span></div>
+    </header>
+
+    <div class="toolbar">
+      <div class="date-label"><svg class="icon"><use href="#i-calendar"/></svg><time id="current-date"></time><span class="demo-label">Positive sample data</span></div>
+      <div class="period-control" role="group" aria-label="Moments chart time period"><button type="button" data-period="today" aria-pressed="false">Today</button><button type="button" data-period="week" aria-pressed="true">7 days</button><button type="button" data-period="month" aria-pressed="false">30 days</button><button type="button" data-period="all" aria-pressed="false">All time</button></div>
+    </div>
+
+    <section class="metrics-grid" id="metrics" aria-label="Everyday things to be grateful for"></section>
+
+    <div class="insights-grid">
+      <section class="panel moments-panel" id="trends" aria-labelledby="moments-heading">
+        <div class="panel-heading"><svg class="icon heading-icon blue"><use href="#i-stats"/></svg><div><h2 id="moments-heading">Moments Worth Noticing</h2><p>A look at the good stuff, adding up.</p></div><span class="period-caption" id="chart-period">Last 7 days</span></div>
+        <div class="chart-summary"><strong id="moments-total"></strong><span>good moments <span id="moments-scope">this week</span></span><span class="positive-trend" id="moments-growth"></span></div>
+        <div class="moments-chart" id="moments-chart"></div>
+      </section>
+
+      <section class="panel needs-panel" id="needs" aria-labelledby="needs-heading">
+        <div class="panel-heading"><svg class="icon heading-icon blue"><use href="#i-pie"/></svg><div><h2 id="needs-heading">Needs Already Met</h2><p>So much is already in your corner.</p></div></div>
+        <div class="needs-content"><div class="donut-wrap"><svg id="needs-chart" class="donut" viewBox="0 0 200 200" role="img" aria-label="Core needs met"></svg><div class="donut-label"><strong id="needs-total"></strong><span>Core needs<br>met</span></div></div><ul class="needs-legend" id="needs-legend"></ul></div>
+      </section>
+
+      <aside class="perspective-panel" aria-label="A little encouragement"><blockquote><p id="perspective-quote">A lot is going right.</p><svg class="icon"><use href="#i-heart"/></svg></blockquote><span class="perspective-caption">A moment of perspective</span></aside>
+    </div>
+
+    <div class="details-grid">
+      <section class="panel wins-panel" id="wins" aria-labelledby="wins-heading">
+        <div class="panel-heading"><svg class="icon heading-icon amber"><use href="#i-wins"/></svg><div><h2 id="wins-heading">Uncounted Wins</h2><p>The everyday things that matter more than you think.</p></div></div>
+        <div class="table-wrap"><table class="wins-table"><thead><tr><th scope="col">#</th><th scope="col">Win</th><th scope="col" class="win-detail">A little perspective</th><th scope="col"><span class="sr-only">Save win</span></th></tr></thead><tbody id="wins-list"></tbody></table></div>
+      </section>
+
+      <section class="panel activity-panel" id="activity" aria-labelledby="activity-heading">
+        <div class="panel-heading"><svg class="icon heading-icon purple"><use href="#i-clock"/></svg><div><h2 id="activity-heading">Recent Activity</h2><p>A little log of good things.</p></div><label class="activity-filter"><span class="sr-only">Filter activity</span><select id="activity-filter"><option value="all">All activity</option><option value="essentials">Essentials</option><option value="connection">Connection</option><option value="small-joys">Small joys</option></select></label></div>
+        <ul class="activity-list" id="activity-list"></ul>
+      </section>
+
+      <section class="panel reasons-panel" aria-labelledby="reasons-heading"><div class="panel-heading"><svg class="icon heading-icon amber"><use href="#i-sparkles"/></svg><div><h2 id="reasons-heading">Reasons to Keep Going</h2><p>A few of the many.</p></div></div><ul class="reasons-list" id="reasons-list"></ul></section>
+    </div>
+    <footer class="page-footer"><span class="status-dot" aria-hidden="true"></span>Fresh perspective on every refresh.<span>Illustrative data. Real things to appreciate.</span></footer>
+    <noscript><p class="noscript-message">Enable JavaScript to see your dashboard and generate a fresh perspective.</p></noscript>
+  </main>
+
+  <dialog class="journal-dialog" id="journal-dialog" aria-labelledby="journal-heading">
+    <div class="dialog-heading"><div><h2 id="journal-heading">Your Gratitude Journal</h2><p>A place to keep the little things.</p></div><button class="icon-button" id="close-journal" type="button" aria-label="Close journal"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <form id="journal-form"><label for="journal-entry">What went well today?</label><textarea id="journal-entry" name="entry" rows="3" maxlength="500" placeholder="A good conversation, a warm meal, a small win…" required></textarea><div class="journal-form-footer"><span id="journal-feedback" role="status"></span><button class="button button-primary" type="submit">Save moment</button></div></form>
+    <div class="journal-entries" id="journal-entries"></div>
+  </dialog>
+  <div class="sr-only" id="announcement" role="status" aria-live="polite"></div>
+</body>
+</html>
