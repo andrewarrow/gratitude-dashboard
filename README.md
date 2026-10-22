@@ -1,1 +1,1 @@
-![dash.png]
+![Gratitude dashboard](dash.png)
